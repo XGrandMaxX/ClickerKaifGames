@@ -11,15 +11,17 @@ namespace Core
         protected override void Configure(IContainerBuilder builder)
         {
             RegisterPopupPool(builder);
-            RegisterEntryPoint(builder);
+            //RegisterEntryPoint(builder);
+            RegisterClickableObject(builder);
         }
         
-        private void RegisterEntryPoint(IContainerBuilder builder) => builder.RegisterEntryPoint<EntryPoint>();
-
         private void RegisterPopupPool(IContainerBuilder builder)
         {
             PopupPool popupPool = new PopupPool(_popupPrefab, _parentObject);
             builder.RegisterInstance(popupPool);
         }
+        //private void RegisterEntryPoint(IContainerBuilder builder) => builder.RegisterEntryPoint<EntryPoint>();
+        private void RegisterClickableObject(IContainerBuilder builder) => builder.RegisterComponentInHierarchy<ClickableObject>();
+        
     }
 }
